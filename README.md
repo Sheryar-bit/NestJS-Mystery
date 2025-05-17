@@ -57,6 +57,6 @@ NestJS-Mystery/
 
 ## 🌐 Connect
 
-* LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/sheryar-ali-53349a219)
+* LinkedIn: [Muhammad Sheryar](https://www.linkedin.com/in/sheryar-ali-53349a219)
 * GitHub: [Sheryar-bit](https://github.com/Sheryar-bit)
 
