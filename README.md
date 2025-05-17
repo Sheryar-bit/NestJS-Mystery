@@ -19,45 +19,15 @@
 
   ## NestJS-Mystery
 
-Welcome to the **NestJS-Mystery** repository! 🚀
-This is a personal learning project where I will explore, practice, and master the NestJS framework, building scalable and maintainable backend applications.
+Welcome to the **NestJS-Mystery** repository!
+Just a personal learning project where I will explore, practice, and master the NestJS framework, building scalable and maintainable backend applications.
 
-## 📌 Project Purpose
+##  Project Purpose
 
-The main goal of this repository is to document my journey of learning NestJS, including basic to advanced concepts, best practices, and real-world use cases.
+The main goal of this repository is to document my journey of learning NestJS and keep on tracking my progerss, including basic to advanced concepts, best practices, and real-world use cases.
 
-## 🚀 Getting Started
 
-### Installation
-
-1. Make sure you have Node.js installed.
-2. Clone this repository:
-
-```bash
-git clone https://github.com/Sheryar-bit/NestJS-Mystery.git
-```
-
-3. Go to the project directory:
-
-```bash
-cd NestJS-Mystery
-```
-
-4. Install dependencies:
-
-```bash
-npm install
-```
-
-### Running the Application
-
-```bash
-npm run start
-```
-
-This will start the development server on `http://localhost:3000`.
-
-## 📂 Project Structure
+##  Project Structure
 
 ```
 NestJS-Mystery/
@@ -85,13 +55,8 @@ NestJS-Mystery/
 * ✅ Modular Architecture
 
 
-## 📌 How to Contribute
-
-Feel free to fork this repository and submit pull requests for improvements or new features.
-
 ## 🌐 Connect
 
-* LinkedIn: [Your LinkedIn Profile]()
+* LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/sheryar-ali-53349a219)
 * GitHub: [Sheryar-bit](https://github.com/Sheryar-bit)
 
-Happy coding! 🚀
