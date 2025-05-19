@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 @Controller('users') // /users will handle this 
 export class UsersController {
@@ -25,8 +25,9 @@ export class UsersController {
 //    }
 
    @Get(':id') //GET /users/interns/:id
-   findOne(@Param('id') id: string) {
-    return this.UsersService.findOne(parseInt(id))
+   //Used ParseIntPipe that will automatically validate that our parameter is converted to Js integer
+   findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.UsersService.findOne(id)
    }
 
    @Post() //creating /users
@@ -35,12 +36,14 @@ export class UsersController {
    }
    
    @Patch(':id') //GET /users/interns/:id
-   Update(@Param('id') id: string, @Body() userUpdate: {name?: string, email?: string, role?: "INTERN" | "ENGINEER" | "ADMIN" }) {
-    return this.UsersService.update
+   //Used ParseIntPipe that will automatically validate that our parameter is converted to Js integer
+   Update(@Param('id', ParseIntPipe) id: number, @Body() userUpdate: {name?: string, email?: string, role?: "INTERN" | "ENGINEER" | "ADMIN" }) {
+    return this.UsersService.update(id, userUpdate)
    }
 
    @Delete(':id') //GET /users/interns/:id
-   delete(@Param('id') id: string) {
-    return this.UsersService.delete(parseInt(id))
+   //Used ParseIntPipe that will automatically validate that our parameter is converted to Js integer
+   delete(@Param('id', ParseIntPipe) id: number) {
+    return this.UsersService.delete(id)
    }
 }
