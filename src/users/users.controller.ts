@@ -1,5 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, ParseIntPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, ParseIntPipe, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpadteUserDto } from './dto/update-user.dto';
+
 @Controller('users') // /users will handle this 
 export class UsersController {
     /*
@@ -31,14 +34,15 @@ export class UsersController {
    }
 
    @Post() //creating /users
-   Create(@Body() user: {name: string, email: string, role: "INTERN" | "ENGINEER" | "ADMIN" }) {
-    return this.UsersService.Create(user)
+   //used DTO to create a user
+   Create(@Body(ValidationPipe) CreateUserDto: CreateUserDto) {
+    return this.UsersService.Create(CreateUserDto)
    }
    
    @Patch(':id') //GET /users/interns/:id
    //Used ParseIntPipe that will automatically validate that our parameter is converted to Js integer
-   Update(@Param('id', ParseIntPipe) id: number, @Body() userUpdate: {name?: string, email?: string, role?: "INTERN" | "ENGINEER" | "ADMIN" }) {
-    return this.UsersService.update(id, userUpdate)
+   Update(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) upadteUserDto: UpadteUserDto) {
+    return this.UsersService.update(id, upadteUserDto)
    }
 
    @Delete(':id') //GET /users/interns/:id
