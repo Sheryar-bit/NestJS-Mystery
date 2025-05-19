@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpadteUserDto } from './dto/update-user.dto';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
@@ -38,34 +41,38 @@ export class UsersService {
     //Getting All yhe users with some role(optionl)
     findAll(role?: "INTERN" | "ENGINEER" | "ADMIN") {
         if (role) {
-            return this.users.filter(user => user.role === role) //For each user in the array it checks if the user.role matches the provided role
+            const rolesArray = this.users.filter(user => user.role === role) //For each user in the array it checks if the user.role matches the provided role
+            if(rolesArray.length === 0) throw new NotFoundException("User Role Not Found!! ")
+              return rolesArray
         }
         return this.users
     }
     //Finding user with Id
     findOne(id: number) {
         const user = this.users.find(user => user.id === id)
+
+        if(!user) throw new NotFoundException("User Not Found!! ")
         return this.users
     }
 
     //creates a user
-    Create(user: {name: string, email: string, role: "INTERN" | "ENGINEER" | "ADMIN" }){
+    Create(CreateUseDto: CreateUserDto){
         //just creating some logic to crete IDs
         const userByHighestId = [...this.users].sort(function(a,b){
            return  b.id - a.id
     })
     const newUser = {
             id: userByHighestId[0].id = 1,
-            ...user
+            ...CreateUseDto
            }
            this.users.push(newUser)
            return newUser
     }
     //Upadtes user By Id
-    update(id: number, updatedUser: {name?: string, email?: string, role?: "INTERN" | "ENGINEER" | "ADMIN" }) {
+    update(id: number, UpadteUserDto: UpadteUserDto) {
         this.users = this.users.map(user => { //uses map to create a new aray of users
             if (user.id === id){
-                return {...user, ...updatedUser} //This merges the existing user object with the updatedUser object
+                return {...user, ...UpadteUserDto} //This merges the existing user object with the updatedUser object
             }
             return user
         })
