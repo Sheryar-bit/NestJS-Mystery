@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { AdminController } from './admin/admin.controller';
 
 @Module({
   imports: [UsersModule, 
@@ -23,7 +24,7 @@ import { APP_GUARD } from '@nestjs/core';
           ]) //3 reqs per minute
 
           ],
-  controllers: [AppController],
+  controllers: [AppController, AdminController],
   providers: [AppService, {
     provide: APP_GUARD,
     useClass: ThrottlerGuard,
