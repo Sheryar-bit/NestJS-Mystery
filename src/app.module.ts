@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { AdminController } from './admin/admin.controller';
+import { AdminService } from './admin/admin.service';
 
 @Module({
   imports: [UsersModule, 
@@ -28,6 +29,6 @@ import { AdminController } from './admin/admin.controller';
   providers: [AppService, {
     provide: APP_GUARD,
     useClass: ThrottlerGuard,
-  }],
+  }, AdminService],
 })
 export class AppModule {}
