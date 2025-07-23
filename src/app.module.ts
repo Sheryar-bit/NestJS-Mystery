@@ -8,6 +8,7 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { AdminController } from './admin/admin.controller';
 import { AdminService } from './admin/admin.service';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [UsersModule, 
@@ -22,7 +23,8 @@ import { AdminService } from './admin/admin.service';
               ttl: 60000,
               limit: 100
             }
-          ]) //3 reqs per minute
+          ]),
+            AdminModule //3 reqs per minute
 
           ],
   controllers: [AppController, AdminController],
