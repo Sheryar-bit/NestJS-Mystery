@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { AdminService } from './admin.service';
+import { CreateAdminDto } from './dto/create.admin.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -18,12 +19,11 @@ export class AdminController {
     }
 
     @Post()
-    createAdmin(@Body() body: {name: string; email: string}) {
-        return this.adminService.createAdmin(body);
+    createAdmin(@Body() CreateAdminDto: CreateAdminDto)  {
+        return this.adminService.createAdmin(CreateAdminDto);
     }
-
     @Put(':id')
-    upadteAdmin(@Param('id') id: string, @Body() body :{name: string; email: string}) {
+    upadteAdmin(@Param('id') id: string, @Body() body :{name: string; email: string, age: number}) {
         return this.adminService.upadteAdmin(Number(id), body);
     }
 
