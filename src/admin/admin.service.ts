@@ -1,25 +1,28 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Admin } from './interfaces/admin.interface';
+import { CreateAdminDto } from './dto/create.admin.dto';
 
 @Injectable()
 export class AdminService {
-    private admins = [
+    private admins: Admin[]=[
+        //These 3 feilds are must , id, name, age as w have defined in the interface
         {
             id: 1, 
             name: 'Sheryar',
-            email: 'sheryar@gmail.com'
+            age: 25,
         },
         {
             id: 2, 
             name: 'Yasir',
-            email: 'Yasirr@gmail.com'
+            age: 28,
         },
         {
             id: 3, 
             name: 'Imran',
-            email: 'Imran804@gmail.com'
+            age: 30,
         }
     ];
-    getAllAdmins(){
+    getAllAdmins(): Admin[]{
         return this.admins;
     }
 
@@ -30,17 +33,17 @@ export class AdminService {
     }
 
     //Post API
-    createAdmin(data: {name: string; email:string} ) {
+    createAdmin(CreateAdminDto: CreateAdminDto): Admin {
         const newAdmin = {
             id: Date.now(),
-            ...data
+            ...CreateAdminDto //Spread operator to include all properties from CreateAdminDto
         };
         this.admins.push(newAdmin); //new admin ko admins array mein push karna
         return newAdmin;
     }
 
     //put API
-    upadteAdmin(id:number,data:{name: string; email:string}) {
+    upadteAdmin(id:number,data:{name: string; age: number}) {
         const idx = this.admins.findIndex(admin => admin.id === id);
         if(idx === -1) throw new NotFoundException('Admin not found'); //Validation check for id
         this.admins[idx] = {id, ...data}; //Update the admin with new data
